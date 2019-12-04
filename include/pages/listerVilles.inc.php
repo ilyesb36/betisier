@@ -19,4 +19,4 @@ $nbVilles = $villeManager->getNbVilles();
 	<?php } ?>
 </table>
 
-	
+<br> <br>

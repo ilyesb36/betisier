@@ -135,14 +135,24 @@ case 23:
 	break;
 
 case 24:
-	// inclure ici la page pour supprimer une personne
+	// inclure ici la page pour supprimer des citations
 	include("pages/supprimerCitations.inc.php");
 	break;
 
 case 25:
-	// inclure ici la page pour supprimer une personne
+	// inclure ici la page pour supprimer une citation
 	include("pages/supprimerUneCitation.inc.php");
 	break;
+
+case 26:
+    // inclure ici la page pour supprimer des villes
+    include("pages/supprimerVilles.inc.php");
+    break;
+
+case 27:
+    // inclure ici la page pour supprimer une ville
+    include("pages/supprimerUneVille.inc.php");
+    break;
 
 default : 	include_once('pages/accueil.inc.php');
 }

@@ -33,7 +33,7 @@
 			<li><a href="index.php?page=7">Ajouter</a></li>
 			<li><a href="index.php?page=100">Modifier</a></li>
 				<?php if ($_SESSION["estAdmin"]) {?>
-				<li><a href="index.php?page=12">Supprimer</a></li>
+				<li><a href="index.php?page=26">Supprimer</a></li>
 				<?php } ?>
 			<?php } ?>
 		</ul>
