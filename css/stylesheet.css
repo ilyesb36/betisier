@@ -156,3 +156,52 @@ h1{
  	position:relative;
  	top:2px;
 }
+
+/*--------------------------------------------*/
+
+table {
+	border-collapse: collapse;
+	width: 700px;
+	margin: auto;	
+}
+
+td {
+	border: 1px solid black;
+	padding: 5px 10px 5px 10px;
+}
+
+button {
+	font-weight: bold;
+	font-size: 25px;
+	border-style: none;
+	background-color: #AAAAAA;
+	cursor: pointer;
+}
+
+.operation {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.inputForm {
+	font-size: 20px;
+	background-color: #AAAAAA;
+    border-radius: 5px;
+    border: 2px solid #111111;
+    box-shadow: 0 0 2px #000000 inset;
+}
+
+.btnForm {
+	font-weight: bold;
+	padding: 8px 20px 8px 20px;
+	font-size: 18px;
+	border-radius: 5px;
+	background-color: #222222;
+	color: white;
+}
+
+select {
+	font-size: 18px;
+	border-radius: 5px;
+	background-color: #AAAAAA;
+}

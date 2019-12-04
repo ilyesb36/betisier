@@ -53,7 +53,7 @@ case 7:
     break;
 
 case 8:
-// inclure ici la page lister  ville
+// inclure ici la page lister ville
 	include("pages/listerVilles.inc.php");
     break;
 
@@ -61,20 +61,89 @@ case 8:
 
 //
 case 9:
-	// inclure ici la page ....
+	// inclure ici la page détail sur étudiant
+	include("pages/detailPersonne.inc.php");
     break;
 case 10:
-	// inclure ici la page....
+	// inclure ici la page de connection
+	include("pages/connection.inc.php");
     break;
     
 case 11:
-	// inclure ici la page...
+	// inclure ici la page de déconnection
+	include("pages/deconnection.inc.php");
     break;
 
 case 12:
-	// inclure ici la page...
-    break;    
-    
+	// inclure ici la page de l'ajout d'un étudiant ou salarié
+	include("pages/ajoutEtudiantSalarie.inc.php");
+	break;    
+	
+case 13:
+	// inclure ici la page d'ajout d'un étudiant
+	include("pages/ajoutEtudiant.inc.php");
+	break;
+
+case 14:
+	// inclure ici la page d'ajout d'un salarié
+	include("pages/ajoutSalarie.inc.php");
+	break;
+
+case 15:
+	// inclure ici la page où on vote les citations
+	include("pages/noterCitation.inc.php");
+	break;
+
+case 16:
+	// inclure ici la page de recherche de citation
+	include("pages/rechercherCitation.inc.php");
+	break;
+
+case 17:
+	// inclure ici la page de modification d'une personne
+	include("pages/modifierUnePersonne.inc.php");
+	break;
+
+case 18:
+	// inclure ici la page de modification d'une personne
+	include("pages/modifierEtudiantSalarie.inc.php");
+	break;
+
+case 19:
+	// inclure ici la page de modification d'une personne
+	include("pages/modifierEtudiant.inc.php");
+	break;
+
+case 20:
+	// inclure ici la page de modification d'une personne
+	include("pages/modifierSalarie.inc.php");
+	break;
+
+case 21:
+	// inclure ici la page pour valider les citations
+	include("pages/validerCitations.inc.php");
+	break;
+	
+case 22:
+	// inclure ici la page pour valider les citations
+	include("pages/validerLaCitation.inc.php");
+	break;
+
+case 23:
+	// inclure ici la page pour supprimer une personne
+	include("pages/supprimerUnePersonne.inc.php");
+	break;
+
+case 24:
+	// inclure ici la page pour supprimer une personne
+	include("pages/supprimerCitations.inc.php");
+	break;
+
+case 25:
+	// inclure ici la page pour supprimer une personne
+	include("pages/supprimerUneCitation.inc.php");
+	break;
+
 default : 	include_once('pages/accueil.inc.php');
 }
 	
