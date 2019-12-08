@@ -1,10 +1,13 @@
 <div id="texte">
 <?php
-if (!empty($_GET["page"])){
-	$page=$_GET["page"];}
-	else
-	{$page=0;
-	}
+if (empty($_SERVER["HTTP_REFERER"])) {
+    echo "<br> <br> Vous ne pouvez pas changer la page avec l'url";
+    exit;
+} else if (!empty($_GET["page"])){
+	$page=$_GET["page"];
+} else {
+    $page=0;
+}
 switch ($page) {
 //
 // Personnes

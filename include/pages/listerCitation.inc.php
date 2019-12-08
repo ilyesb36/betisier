@@ -11,7 +11,7 @@ $nbCitation = $citationManager->getNbCitationValide();
 <p>Actuellement <?php echo $nbCitation ?> de citations sont enregistrées</p>
 
 <table>
-	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th><?php if ($etudiantManager->estEtudiant($_SESSION["userNum"])){
+	<tr><th>Nom de l'enseignant</th><th>Libellé</th><th>Date</th><th>Moyenne des notes</th><?php if (!empty($_SESSION["userNum"]) && $etudiantManager->estEtudiant($_SESSION["userNum"])){
 		echo "<th>Noter</th>";
 	} ?></tr>
 	<?php
@@ -20,7 +20,7 @@ $nbCitation = $citationManager->getNbCitationValide();
 		</td><td><?php echo $citation->getLibelle();?>
 		</td><td><?php echo $citation->getDate();?>
 		</td><td><?php echo $citation->getValeur();?>
-		</td> <?php if ($etudiantManager->estEtudiant($_SESSION["userNum"])) { ?> <td><?php if ($citationManager->estDejaNote($citation->getCitNum(), $_SESSION["userNum"])) { ?>
+		</td> <?php if (!empty($_SESSION["userNum"]) && $etudiantManager->estEtudiant($_SESSION["userNum"])) { ?> <td><?php if ($citationManager->estDejaNote($citation->getCitNum(), $_SESSION["userNum"])) { ?>
 			<img src="./image/erreur.png">
 		<?php } else { ?>
 			<a href="index.php?page=15&citnum=<?php echo $citation->getCitNum() ?>"><img src="./image/modifier.png"></a>
@@ -28,4 +28,3 @@ $nbCitation = $citationManager->getNbCitationValide();
 		</td> <?php } ?></tr>
 	<?php } ?>
 </table>
-
