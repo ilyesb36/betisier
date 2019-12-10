@@ -68,9 +68,11 @@ class CitationManager {
         $dateDepo = date("Y-m-d H:i:s");
 
         $sql = "INSERT INTO CITATION(per_num, per_num_etu, cit_libelle, cit_date, cit_date_depo)
-         VALUES($pernum, $pernumEtu, :citation, '$citDate', '$dateDepo')";
+         VALUES(:pernum, :pernumEtu, :citation, '$citDate', '$dateDepo')";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
+        $req->bindValue(':pernumEtu', $pernumEtu, PDO::PARAM_INT);
         $req->bindValue(':citation', $citation, PDO::PARAM_STR);
 
         $req->execute();
@@ -78,9 +80,11 @@ class CitationManager {
 
     public function estDejaNote($citnum, $pernum) {
         
-        $sql = "SELECT per_num FROM VOTE WHERE cit_num = $citnum AND per_num = $pernum";
+        $sql = "SELECT per_num FROM VOTE WHERE cit_num = :citnum AND per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':citnum', $citnum, PDO::PARAM_INT);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
         $req->execute();
         
         if ($req->rowCount() > 0) {
@@ -92,9 +96,11 @@ class CitationManager {
 
     public function ajouterNoteCitation($citnum, $pernum, $note) {
 
-        $sql = "INSERT INTO VOTE(cit_num, per_num, vot_valeur) VALUES($citnum, $pernum, $note)";
+        $sql = "INSERT INTO VOTE(cit_num, per_num, vot_valeur) VALUES(:citnum, :pernum, $note)";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':citnum', $citnum, PDO::PARAM_INT);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
         $req->execute();
     }
 
@@ -106,8 +112,8 @@ class CitationManager {
 
         $listeCit = array();
 
-        $sql = "SELECT c.cit_num, per_nom, per_prenom, cit_libelle, cit_date, avg(vot_valeur) as valeur 
-        FROM CITATION c JOIN VOTE v ON c.cit_num = v.cit_num JOIN PERSONNE p ON c.per_num = p.per_num
+        $sql = "SELECT c.cit_num, per_nom, per_prenom, cit_libelle, cit_date, COALESCE(avg(vot_valeur), 0) as valeur 
+        FROM CITATION c LEFT JOIN VOTE v ON c.cit_num = v.cit_num JOIN PERSONNE p ON c.per_num = p.per_num
         WHERE cit_valide = 1 AND cit_date_valide IS NOT NULL ";
         if ($pernom != NULL) {
             $sql = $sql."AND per_nom = '$pernom' ";

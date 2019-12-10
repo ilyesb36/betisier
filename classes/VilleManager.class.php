@@ -24,6 +24,20 @@ class VilleManager {
         return $listeVilles;
     }
 
+    public function getUneVille($vilnum) {
+
+        $sql = "SELECT vil_nom FROM VILLE WHERE vil_num = :vilnum";
+
+        $req = $this->dbo->prepare($sql);
+        $req->bindValue(':vilnum', $vilnum, PDO::PARAM_INT);
+        $req->execute();
+
+        $ville = $req->fetch(PDO::FETCH_OBJ);
+        $ville = new Ville($ville);
+
+        return $ville;
+    }
+
     public function getNbVilles() {
         return count($this->getVilles());
     }
@@ -48,6 +62,17 @@ class VilleManager {
         } else {
             return false;
         }
+    }
+
+    public function modifierVille($vilnum, $vilnom) {
+
+        $sql = "UPDATE VILLE SET vil_nom = :vilnom WHERE vil_num = :vilnum";
+
+        $req = $this->dbo->prepare($sql);
+        $req->bindValue(':vilnom', $vilnom, PDO::PARAM_STR);
+        $req->bindValue(':vilnum', $vilnum, PDO::PARAM_INT);
+
+        $req->execute();
     }
 
     public function supprimerVille($vilnum) {

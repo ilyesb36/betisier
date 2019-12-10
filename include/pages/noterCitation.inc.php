@@ -14,6 +14,8 @@
 <?php } else {
         if ($_POST["noteCitation"] < 0 || $_POST["noteCitation"] > 20) {
                 echo "La note doit compris entre 0 et 20";
+                echo "Redirection automatique dans 2 secondes";
+                header("Refresh:2;url=index.php?page=6");
         } else {
                 $pdo = new Mypdo();
                 $citationManager = new CitationManager($pdo);
