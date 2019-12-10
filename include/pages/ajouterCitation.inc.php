@@ -32,7 +32,7 @@ $salaries = $salarieManager->getAllSalaries();
 		$mot[] = $motInterdit->getMotInterdit();
 	}
 	if (count($listeMotInterdit) > 0) { 
-		$newCitation = str_replace($mot, "---", $_POST["citation"]);?>
+		$newCitation = str_ireplace($mot, "---", $_POST["citation"]);?>
 	<form action="#" method="post" id="formCitation">
 			<label>Enseignant : </label>
 			<select name="salarie">
