@@ -11,9 +11,11 @@ $_SESSION["estConnecte"] = empty($_SESSION["estConnecte"])?false:$_SESSION["estC
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache, must-revalidate">
   <?php
+
 		$title = "Bienvenue sur le site du bétisier de l'IUT.";?>
 		<title>
-		<?php echo $title ?>
+		<?php echo $title;
+		echo "<img src=\"./image/smile.jpg\">"; ?>
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
  
@@ -30,7 +32,11 @@ $_SESSION["estConnecte"] = empty($_SESSION["estConnecte"])?false:$_SESSION["estC
 		</div>
 		<div id="entete">
 			<div id="logo">
-			
+                <?php if ($_SESSION["estConnecte"]) {
+                echo "<img src=\"./image/smile.jpg\" height='200px' width='200px'>";
+                } else {
+                echo "<img src=\"./image/lebetisier.gif\" height='200px' width='150px'>";
+                } ?>
 			</div>
 			<div id="titre">
 				Le bétisier de l'IUT,<br />Partagez les meilleures perles !!!
