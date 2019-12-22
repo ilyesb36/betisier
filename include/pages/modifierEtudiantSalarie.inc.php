@@ -12,15 +12,23 @@ if (!empty($_POST["perPrenom"])) {
 }
 if (!empty($_POST["perTel"])) {
     $_SESSION["perTel"] = $_POST["perTel"];
+} else {
+    header("location:javascript://history.go(-1)");
 }
 if (!empty($_POST["perMail"])) {
     $_SESSION["perMail"] = $_POST["perMail"];
+} else {
+    header("location:javascript://history.go(-1)");
 }
 if (!empty($_POST["perLogin"])) {
     $_SESSION["perLogin"] = $_POST["perLogin"];
+} else {
+    header("location:javascript://history.go(-1)");
 }
 if (!empty($_POST["perMdp"])) {
     $_SESSION["perMdp"] = $_POST["perMdp"];
+} else {
+    header("location:javascript://history.go(-1)");
 }
 $_SESSION["changerStatus"] = 0;
 ?>
@@ -87,7 +95,7 @@ $_SESSION["changerStatus"] = 0;
         <label>Téléphone professionel : </label>
         <input class="inputForm" type="tel" name="proTel" value="<?php if ($_SESSION["changerStatus"] == 0) {
             echo $salarie->getTelPro(); 
-        }?>"/>
+        } else { echo "0000000000";}?>"/>
         <br> <br>
         <label>Fonction : </label>
         <select name="fonction">

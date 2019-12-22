@@ -1,4 +1,9 @@
 <?php
+
+if (empty($_POST["proTel"])) {
+    header("location:javascript://history.go(-1)");
+}
+
 $pdo = new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $salarieManager = new SalarieManager($pdo);

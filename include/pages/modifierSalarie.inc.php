@@ -22,5 +22,5 @@ echo '<img src="./image/valid.png">';
 echo "Le salarié a été modifié !";
 echo "<br> <br>";
 echo "Redirection automatique dans 2 secondes";
-header("Refresh:2;url=index.php?page=0");
+header("Refresh:2;url=index.php?page=2");
 ?>

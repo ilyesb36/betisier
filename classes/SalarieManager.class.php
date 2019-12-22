@@ -28,9 +28,10 @@ class SalarieManager {
         $listeSalarie = array();
 
         $sql = "SELECT per_nom, per_prenom, per_mail, per_tel, sal_telprof, fon_libelle FROM PERSONNE p, SALARIE s, FONCTION f 
-        WHERE p.per_num = s.per_num and s.fon_num = f.fon_num and p.per_num = $pernum";
+        WHERE p.per_num = s.per_num and s.fon_num = f.fon_num and p.per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
         $req->execute();
 
         while ($salarie = $req->fetch(PDO::FETCH_OBJ)) {
@@ -43,9 +44,10 @@ class SalarieManager {
 
     public function estSalarie($pernum) {
 
-        $sql = "SELECT per_num FROM SALARIE WHERE per_num = $pernum";
+        $sql = "SELECT per_num FROM SALARIE WHERE per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
         $req->execute();
 
         if ($req->rowCount() > 0) {
@@ -57,17 +59,24 @@ class SalarieManager {
 
     public function ajoutSalarie($pernum, $saltel, $fonnum) {
 
-        $sql = "INSERT INTO SALARIE(per_num, sal_telprof, fon_num) VALUES($pernum, '$saltel', $fonnum)";
+        $sql = "INSERT INTO SALARIE(per_num, sal_telprof, fon_num) VALUES(:pernum, :saltel, :fonnum)";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
+        $req->bindValue(':saltel', $saltel, PDO::PARAM_STR);
+        $req->bindValue(':fonnum', $fonnum, PDO::PARAM_INT);
+
         $req->execute();
     }
 
     public function modifierSalarie($pernum, $saltel, $fonnum) {
 
-        $sql = "UPDATE SALARIE SET sal_telprof = $saltel, fon_num = $fonnum WHERE per_num = $pernum";
+        $sql = "UPDATE SALARIE SET sal_telprof = :saltel, fon_num = :fonnum WHERE per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
+        $req->bindValue(':saltel', $saltel, PDO::PARAM_STR);
+        $req->bindValue(':fonnum', $fonnum, PDO::PARAM_INT);
         $req->execute();
     }
 

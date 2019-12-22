@@ -1,10 +1,11 @@
 <h1>Ajouter une personne</h1>
+<h2>Tous les champs doivent être renseignés</h2>
 <form action="index.php?page=12" method="post" id="formPers">
 		<label>Nom : </label>
-		<input class="inputForm" type="text" name="perNom" placeholder="Ne doit pas être vide"/>
+		<input class="inputForm" type="text" name="perNom" />
 		<br> <br>
 		<label>Prénom : </label>
-		<input class="inputForm" type="text" name="perPrenom" placeholder="Ne doit pas être vide"/>
+		<input class="inputForm" type="text" name="perPrenom" />
 		<br> <br>
 		<label>Téléphone : </label>
 		<input class="inputForm" type="tel" name="perTel" />

@@ -26,6 +26,7 @@ if (!$ajout) {?>
 echo '<img src="./image/valid.png"> La ville "';
 echo $_POST["vilNom"];
 echo '" a été ajoutée';
+echo "<br>";
 echo "Redirection automatique dans 2 secondes";
 header("Refresh:2;url=index.php?page=8");
 }?>

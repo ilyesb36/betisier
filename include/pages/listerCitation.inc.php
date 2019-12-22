@@ -16,7 +16,7 @@ $nbCitation = $citationManager->getNbCitationValide();
 	} ?></tr>
 	<?php
 	foreach ($citations as $citation){ ?>
-		<tr><td><?php echo $citation->getPerNom(); echo $citation->getPerPrenom()?>
+		<tr><td><?php echo $citation->getPerNom(); echo " "; echo $citation->getPerPrenom()?>
 		</td><td><?php echo $citation->getLibelle();?>
 		</td><td><?php echo $citation->getDate();?>
 		</td><td><?php echo $citation->getValeur();?>
@@ -28,3 +28,5 @@ $nbCitation = $citationManager->getNbCitationValide();
 		</td> <?php } ?></tr>
 	<?php } ?>
 </table>
+
+<br> <br>

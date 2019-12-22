@@ -27,9 +27,10 @@ class PersonneManager {
     public function getPersonneAllInfo($pernum) {
         $listePers = array();
 
-        $sql = "SELECT per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM PERSONNE WHERE per_num = $pernum";
+        $sql = "SELECT per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM PERSONNE WHERE per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
         $req->execute();
 
         while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
@@ -45,9 +46,11 @@ class PersonneManager {
         $salt = "48@!alsd";
         $mdp_cpt = sha1(sha1($mdp).$salt);
 
-        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = '$login' AND per_pwd = '$mdp_cpt'";
+        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = :login AND per_pwd = :mdp_cpt";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':login', $login, PDO::PARAM_STR);
+        $req->bindValue(':mdp_cpt', $mdp_cpt, PDO::PARAM_STR);
         $req->execute();
 
         while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
@@ -62,9 +65,11 @@ class PersonneManager {
         $salt = "48@!alsd";
         $mdp_cpt = sha1(sha1($mdp).$salt);
 
-        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = '$login' AND per_pwd = '$mdp_cpt'";
+        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = :login AND per_pwd = :mdp_cpt";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':login', $login, PDO::PARAM_STR);
+        $req->bindValue(':mdp_cpt', $mdp_cpt, PDO::PARAM_STR);
         $req->execute();
         
         if ($req->rowCount() > 0) {
@@ -79,9 +84,11 @@ class PersonneManager {
         $salt = "48@!alsd";
         $mdp_cpt = sha1(sha1($mdp).$salt);
 
-        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = '$login' AND per_pwd = '$mdp_cpt' AND per_admin = 1";
+        $sql = "SELECT per_num FROM PERSONNE WHERE per_login = :login AND per_pwd = :mdp_cpt AND per_admin = 1";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':login', $login, PDO::PARAM_STR);
+        $req->bindValue(':mdp_cpt', $mdp_cpt, PDO::PARAM_STR);
         $req->execute();
 
         if ($req->rowCount() > 0) {
@@ -96,16 +103,20 @@ class PersonneManager {
     }
 
     public function ajoutPersonne($perNom, $perPrenom, $perTel, $perMail, $perLogin, $perMdp) {
-        
-        // Utiliser BindValue!!!
 
         $salt = "48@!alsd";
         $mdp_cpt = sha1(sha1($perMdp).$salt);
 
         $sql = "INSERT INTO PERSONNE(per_nom, per_prenom, per_tel, per_mail, per_admin, per_login, per_pwd)
-        VALUES('$perNom', '$perPrenom', '$perTel', '$perMail', 0, '$perLogin', '$mdp_cpt')";
+        VALUES(:perNom, :perPrenom, :perTel, :perMail, 0, :perLogin, :mdp_cpt)";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':perNom', $perNom, PDO::PARAM_STR);
+        $req->bindValue(':perPrenom', $perPrenom, PDO::PARAM_STR);
+        $req->bindValue(':perTel', $perTel, PDO::PARAM_STR);
+        $req->bindValue(':perMail', $perMail, PDO::PARAM_STR);
+        $req->bindValue(':perLogin', $perLogin, PDO::PARAM_STR);
+        $req->bindValue(':mdp_cpt', $mdp_cpt, PDO::PARAM_STR);
         $req->execute();
         $_SESSION["perId"] = $this->dbo->lastInsertId();
     }
@@ -115,10 +126,17 @@ class PersonneManager {
         $salt = "48@!alsd";
         $mdp_cpt = sha1(sha1($perMdp).$salt);
 
-        $sql = "UPDATE PERSONNE SET per_nom = '$perNom', per_prenom = '$perPrenom', per_tel = '$perTel', per_mail = '$perMail',
-        per_login = '$perLogin', per_pwd = '$mdp_cpt' WHERE per_num = $pernum";
+        $sql = "UPDATE PERSONNE SET per_nom = :perNom, per_prenom = :perPrenom, per_tel = :perTel, per_mail = :perMail,
+        per_login = :perLogin, per_pwd = :mdp_cpt WHERE per_num = :pernum";
 
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':pernum', $pernum, PDO::PARAM_INT);
+        $req->bindValue(':perNom', $perNom, PDO::PARAM_STR);
+        $req->bindValue(':perPrenom', $perPrenom, PDO::PARAM_STR);
+        $req->bindValue(':perTel', $perTel, PDO::PARAM_STR);
+        $req->bindValue(':perMail', $perMail, PDO::PARAM_STR);
+        $req->bindValue(':perLogin', $perLogin, PDO::PARAM_STR);
+        $req->bindValue(':mdp_cpt', $mdp_cpt, PDO::PARAM_STR);
         $req->execute();
     }
 

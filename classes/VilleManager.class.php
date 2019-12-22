@@ -43,8 +43,10 @@ class VilleManager {
     }
 
     public function ajoutVille($vilNom) {
-        $sql = "INSERT INTO VILLE(vil_nom) VALUES('$vilNom')";
+        $sql = "INSERT INTO VILLE(vil_nom) VALUES(:vilNom)";
+
         $req = $this->dbo->prepare($sql);
+        $req->bindValue(':vilNom', $vilNom, PDO::PARAM_STR);
         $req->execute();
     }
 
